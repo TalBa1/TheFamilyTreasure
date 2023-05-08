@@ -9,13 +9,23 @@ import {
 } from 'react-native';
 import { COLORS, icons, images, SIZES } from '../assets/theme';
 import { Stack, useRouter } from 'expo-router';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
+
+import Missions from './Missions';
 
 const Home = () => {
-  //const router = useRouter();
-
-  //const handleButtonClick = () => {
-  // router.push('/another-page'); // navigate to another page
-  //};
+  const navigation = useNavigation();
+  const handlePress = () => {
+    navigation.navigate('Missions');
+  };
+  const icons = {
+    home: 'home',
+    share: 'share',
+    hamburger: 'bars',
+    search: 'search',
+    book: 'book',
+  };
   return (
     <ImageBackground
       source={require('../assets/images/background.png')} // background image
@@ -65,7 +75,8 @@ const Home = () => {
 
       {/* Middle */}
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <TouchableOpacity //onPress={handleButtonClick}
+        <TouchableOpacity
+          onPress={handlePress}
           style={{ width: 390, height: 350, borderRadius: 125 }}
         >
           <Image
@@ -82,6 +93,7 @@ const Home = () => {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
+          zIndex: 1,
         }}
       >
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}>
@@ -123,35 +135,23 @@ const Home = () => {
       <SafeAreaView
         style={{
           flexDirection: 'row',
-          justifyContent: 'space-evenly',
+          justifyContent: 'space-around',
           alignItems: 'center',
-          height: 80,
-          backgroundColor: 'black',
-          borderTopColor: '#ccc',
+          height: 70,
         }}
       >
-        <SafeAreaView
-          style={{
-            height: 120,
-            backgroundColor: COLORS.white,
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-          }}
-        >
-          <TouchableOpacity>
-            <Image source="{icons.icon1}" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image source="{icons.icon2}" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image source="{icons.icon3}" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image source="{icons.icon4}" />
-          </TouchableOpacity>
-        </SafeAreaView>
+        <TouchableOpacity>
+          <FontAwesome name={icons.home} size={30} color="#000" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <FontAwesome name={icons.book} size={30} color="#000" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <FontAwesome name={icons.share} size={30} color="#000" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <FontAwesome name={icons.hamburger} size={30} color="#000" />
+        </TouchableOpacity>
       </SafeAreaView>
     </ImageBackground>
   );
