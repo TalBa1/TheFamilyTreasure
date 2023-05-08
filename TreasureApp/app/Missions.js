@@ -91,9 +91,6 @@ const Missions = () => {
           source={missions[currentMission].imageUrl}
           style={{ width: 200, height: 200, marginBottom: 20 }}
         />
-        <Text style={{ fontSize: 20, textAlign: 'center', marginBottom: 20 }}>
-          {missions[currentMission].description}
-        </Text>
         <View
           style={{
             flexDirection: 'row',
