@@ -1,4 +1,5 @@
 import {
+  SafeAreaView,
   ImageBackground,
   View,
   Text,
@@ -7,27 +8,27 @@ import {
 } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Asset } from 'expo-asset';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const missions = [
   {
     id: 1,
     title: 'Mission 1',
-    imageUrl: Asset.fromModule(require('../assets/images/1.png')).uri,
+    imageUrl: require('../assets/images/1.png'),
     description: 'This is the first mission',
     location: 'Location 1',
   },
   {
     id: 2,
     title: 'Mission 2',
-    imageUrl: Asset.fromModule(require('../assets/images/2.png')).uri,
+    imageUrl: require('../assets/images/2.png'),
     description: 'This is the second mission',
     location: 'Location 2',
   },
   {
     id: 3,
     title: 'Mission 3',
-    imageUrl: Asset.fromModule(require('../assets/images/3.png')).uri,
+    imageUrl: require('../assets/images/3.png'),
     description: 'This is the third mission',
     location: 'Platform6, Åkerlundinkatu, Tampere',
   },
@@ -36,7 +37,13 @@ const missions = [
 const Missions = () => {
   const [currentMission, setCurrentMission] = useState(0);
   const navigation = useNavigation();
-
+  const icons = {
+    home: 'home',
+    share: 'share',
+    hamburger: 'bars',
+    search: 'search',
+    book: 'book',
+  };
   const handleNoPress = () => {
     // Show the next mission
     setCurrentMission((currentMission + 1) % missions.length);
@@ -94,19 +101,52 @@ const Missions = () => {
         <View
           style={{
             flexDirection: 'row',
-            justifyContent: 'space-between',
-            paddingHorizontal: 20,
-            width: '40%',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
-          <TouchableOpacity onPress={handleNoPress}>
-            <Text style={{ fontSize: 20, color: 'red' }}>Next mission</Text>
+          <TouchableOpacity
+            onPress={handleNoPress}
+            style={{ flex: 1, alignItems: 'center' }}
+          >
+            <Image
+              source={require('../assets/images/50.png')}
+              style={{ width: 130, height: 200 }}
+            />
           </TouchableOpacity>
-          <TouchableOpacity onPress={handleYesPress}>
-            <Text style={{ fontSize: 20, color: 'green' }}>Accept</Text>
+          <TouchableOpacity
+            onPress={handleYesPress}
+            style={{ flex: 1, alignItems: 'center' }}
+          >
+            <Image
+              source={require('../assets/images/51.png')}
+              style={{ width: 100, height: 200 }}
+            />
           </TouchableOpacity>
         </View>
       </View>
+      {/* Footer */}
+      <SafeAreaView
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          height: 70,
+        }}
+      >
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <FontAwesome name={icons.home} size={30} color="#000" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <FontAwesome name={icons.book} size={30} color="#000" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <FontAwesome name={icons.share} size={30} color="#000" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <FontAwesome name={icons.hamburger} size={30} color="#000" />
+        </TouchableOpacity>
+      </SafeAreaView>
     </ImageBackground>
   );
 };

@@ -7,17 +7,28 @@ import {
   StyleSheet,
   TouchableOpacity,
   Linking,
+  Platform,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const MissionDetailsScreen = () => {
-  const navigation = useNavigation(); // initialize navigation
-  const route = useRoute(); // initialize route before destructuring params
+  const navigation = useNavigation();
+  const route = useRoute();
   const { title, description, imageUrl, location } = route.params;
+  const mapIcon = <FontAwesome name="map-marker" size={30} color="blue" />;
 
   const handleOpenMap = () => {
-    const mapUrl = `https://www.google.com/maps/place/${location}`;
-    Linking.openURL(mapUrl);
+    const mapUrl = `geo:0,0?q=${location}`;
+    const fallbackUrl = `https://www.google.com/maps/place/${location}`;
+
+    Linking.canOpenURL(mapUrl).then((supported) => {
+      if (supported) {
+        Linking.openURL(mapUrl);
+      } else {
+        Linking.openURL(fallbackUrl);
+      }
+    });
   };
 
   return (
@@ -41,7 +52,7 @@ const MissionDetailsScreen = () => {
           {title}
         </Text>
         <Image
-          source={{ uri: imageUrl }}
+          source={imageUrl}
           style={{ width: 200, height: 200, marginBottom: 20 }}
         />
         <Text style={{ fontSize: 18, marginBottom: 20 }}>{description}</Text>
@@ -50,10 +61,10 @@ const MissionDetailsScreen = () => {
             style={{
               fontSize: 18,
               color: 'blue',
-              textDecorationLine: 'underline',
             }}
           >
-            Location: {location}
+            Mission Location: {mapIcon}
+            {location}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -68,29 +79,6 @@ const MissionDetailsScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  image: {
-    width: 300,
-    height: 300,
-    marginBottom: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  description: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-  location: {
-    fontSize: 16,
-  },
   button: {
     paddingVertical: 10,
     paddingHorizontal: 20,

@@ -48,8 +48,8 @@ const Home = () => {
       <SafeAreaView
         style={{
           flexDirection: 'row',
-          justifyContent: 'space-between',
-          paddingHorizontal: SIZES.xxLarge,
+          justifyContent: 'space-around',
+          alignItems: 'center',
         }}
       >
         <Stack.Screen
