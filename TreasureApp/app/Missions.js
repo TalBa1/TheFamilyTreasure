@@ -13,23 +13,26 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const missions = [
   {
     id: 1,
-    title: 'Mission 1',
-    imageUrl: require('../assets/images/1.png'),
-    description: 'This is the first mission',
-    location: 'Location 1',
+    title: 'Musical Mission',
+    imageUrl: require('../assets/images/52.png'),
+    description:
+      'Participants will listen to a short clip of a song and then have to complete the lyrics. This is a fun and interactive way to test your music knowledge and memory skills. It is a great opportunity to have some friendly competition with your friends and family!',
+    location: 'Home',
   },
   {
     id: 2,
-    title: 'Mission 2',
-    imageUrl: require('../assets/images/2.png'),
-    description: 'This is the second mission',
-    location: 'Location 2',
+    title: 'Swimming Mission',
+    imageUrl: require('../assets/images/53.png'),
+    description:
+      'The mission is to find all the hidden objects at the bottom of the pool, such as toys, coins, and sea creatures. Each object has a point value, and the goal is to collect as many points as possible.',
+    location: 'Hervanta, Torisevanraitti 7, 33720 Tampere',
   },
   {
     id: 3,
-    title: 'Mission 3',
-    imageUrl: require('../assets/images/3.png'),
-    description: 'This is the third mission',
+    title: 'Outside Mission',
+    imageUrl: require('../assets/images/54.png'),
+    description:
+      'Organize a treasure hunt where participants have to follow clues and solve puzzles to find a hidden treasure.',
     location: 'Platform6, Åkerlundinkatu, Tampere',
   },
 ];
@@ -96,7 +99,12 @@ const Missions = () => {
         </Text>
         <Image
           source={missions[currentMission].imageUrl}
-          style={{ width: 200, height: 200, marginBottom: 20 }}
+          style={{
+            width: 300,
+            height: 300,
+            marginBottom: 20,
+            borderRadius: 12,
+          }}
         />
         <View
           style={{
@@ -124,6 +132,9 @@ const Missions = () => {
             />
           </TouchableOpacity>
         </View>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10 }}>
+          {`Mission ${currentMission + 1} of ${missions.length}`}
+        </Text>
       </View>
       {/* Footer */}
       <SafeAreaView

@@ -6,6 +6,7 @@ import {
   ImageBackground,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import { COLORS, icons, images, SIZES } from '../assets/theme';
 import { Stack, useRouter } from 'expo-router';
@@ -13,6 +14,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 
 import Missions from './Missions';
+
+const { width, height } = Dimensions.get('window');
 
 const Home = () => {
   const navigation = useNavigation();
@@ -50,6 +53,7 @@ const Home = () => {
           flexDirection: 'row',
           justifyContent: 'space-around',
           alignItems: 'center',
+          height: height * 0.2, // set the height based on the screen height
         }}
       >
         <Stack.Screen
@@ -62,13 +66,13 @@ const Home = () => {
         <View>
           <Image
             source={require('../assets/images/2.png')}
-            style={{ width: 200, height: 200 }}
+            style={{ width: width * 0.4, height: width * 0.4 }} // set the width and height based on the screen width
           />
         </View>
         <View>
           <Image
             source={require('../assets/images/3.png')}
-            style={{ width: 200, height: 200 }}
+            style={{ width: width * 0.4, height: width * 0.4 }} // set the width and height based on the screen width
           />
         </View>
       </SafeAreaView>
@@ -77,19 +81,22 @@ const Home = () => {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <TouchableOpacity
           onPress={handlePress}
-          style={{ width: 390, height: 350, borderRadius: 125 }}
+          style={{
+            width: width * 0.9,
+            height: width * 0.8,
+            borderRadius: width * 0.3,
+          }} // set the dimensions based on the screen width
         >
           <Image
             source={require('../assets/images/1.png')}
-            style={{ width: 400, height: 400, borderRadius: 125 }}
+            style={{ width: '100%', height: '100%', borderRadius: width * 0.3 }} // set the dimensions based on the screen width
           />
         </TouchableOpacity>
       </View>
-
       {/* Another section */}
       <View
         style={{
-          height: 100,
+          height: height * 0.1,
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
@@ -99,19 +106,19 @@ const Home = () => {
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}>
           <Image
             source={require('../assets/images/5.png')}
-            style={{ width: 200, height: 200 }}
+            style={{ width: width * 0.4, height: width * 0.4 }}
           />
         </TouchableOpacity>
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}>
           <Image
             source={require('../assets/images/6.png')}
-            style={{ width: 200, height: 200 }}
+            style={{ width: width * 0.4, height: width * 0.4 }}
           />
         </TouchableOpacity>
       </View>
       <View
         style={{
-          height: 60,
+          height: height * 0.12,
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
@@ -120,13 +127,13 @@ const Home = () => {
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}>
           <Image
             source={require('../assets/images/8.png')}
-            style={{ width: 200, height: 200 }}
+            style={{ width: width * 0.4, height: width * 0.4 }}
           />
         </TouchableOpacity>
         <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}>
           <Image
             source={require('../assets/images/7.png')}
-            style={{ width: 200, height: 200 }}
+            style={{ width: width * 0.4, height: width * 0.4 }}
           />
         </TouchableOpacity>
       </View>
@@ -137,20 +144,20 @@ const Home = () => {
           flexDirection: 'row',
           justifyContent: 'space-around',
           alignItems: 'center',
-          height: 70,
+          paddingBottom: 20,
         }}
       >
         <TouchableOpacity>
-          <FontAwesome name={icons.home} size={30} color="#000" />
+          <FontAwesome name={icons.home} size={24} color="#000" />
         </TouchableOpacity>
         <TouchableOpacity>
-          <FontAwesome name={icons.book} size={30} color="#000" />
+          <FontAwesome name={icons.book} size={24} color="#000" />
         </TouchableOpacity>
         <TouchableOpacity>
-          <FontAwesome name={icons.share} size={30} color="#000" />
+          <FontAwesome name={icons.share} size={24} color="#000" />
         </TouchableOpacity>
         <TouchableOpacity>
-          <FontAwesome name={icons.hamburger} size={30} color="#000" />
+          <FontAwesome name={icons.hamburger} size={24} color="#000" />
         </TouchableOpacity>
       </SafeAreaView>
     </ImageBackground>
