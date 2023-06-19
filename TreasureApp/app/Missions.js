@@ -1,3 +1,4 @@
+import React, { useState, useRef } from 'react';
 import {
   SafeAreaView,
   ImageBackground,
@@ -5,16 +6,17 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  Animated,
 } from 'react-native';
-import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import SwipeCards from 'react-native-swipe-cards';
 
 const missions = [
   {
     id: 1,
     title: 'Musical Mission',
-    imageUrl: require('../assets/images/52.png'),
+    imageUrl: require('../assets/images/Marietta.png'),
     description:
       'Participants will listen to a short clip of a song and then have to complete the lyrics. This is a fun and interactive way to test your music knowledge and memory skills. It is a great opportunity to have some friendly competition with your friends and family!',
     location: 'Home',
@@ -37,6 +39,43 @@ const missions = [
   },
 ];
 
+const MissionCard = ({ mission }) => {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 20 }}>
+        {mission.title}
+      </Text>
+      <Image
+        source={mission.imageUrl}
+        style={{
+          width: 300,
+          height: 300,
+          marginBottom: 20,
+          borderRadius: 12,
+        }}
+      />
+      <Text
+        style={{
+          fontSize: 16,
+
+          fontWeight: 'bold',
+        }}
+      >
+        Description
+      </Text>
+      <Text
+        style={{
+          fontSize: 13,
+          marginBottom: 10,
+          width: 300,
+        }}
+      >
+        {mission.description}
+      </Text>
+    </View>
+  );
+};
+
 const Missions = () => {
   const [currentMission, setCurrentMission] = useState(0);
   const navigation = useNavigation();
@@ -47,24 +86,53 @@ const Missions = () => {
     search: 'search',
     book: 'book',
   };
-  const handleNoPress = () => {
-    // Show the next mission
-    setCurrentMission((currentMission + 1) % missions.length);
+
+  const swipeAnimation = useRef(new Animated.ValueXY()).current;
+
+  const handleSwipeLeft = () => {
+    const nextMissionIndex = (currentMission + 1) % missions.length;
+    setCurrentMission(nextMissionIndex);
+    Animated.timing(swipeAnimation, {
+      toValue: { x: -500, y: 0 },
+      duration: 300,
+      useNativeDriver: true,
+    }).start(() => {
+      swipeAnimation.setValue({ x: 0, y: 0 });
+    });
   };
 
-  const handleYesPress = () => {
-    // Navigate to MissionDetailsScreen with the selected mission
-    const selectedMission = missions[currentMission];
-    if (selectedMission) {
-      navigation.navigate('MissionDetailsScreen', {
-        title: missions[currentMission].title,
-        description: missions[currentMission].description,
-        imageUrl: missions[currentMission].imageUrl,
-        location: missions[currentMission].location,
-      });
-    } else {
-      console.error(`Mission not found at index ${currentMission}`);
-    }
+  const handleSwipeRight = () => {
+    Animated.timing(swipeAnimation, {
+      toValue: { x: 500, y: 0 },
+      duration: 300,
+      useNativeDriver: true,
+    }).start(() => {
+      swipeAnimation.setValue({ x: 0, y: 0 });
+      const selectedMission = missions[currentMission];
+      if (selectedMission) {
+        navigation.navigate('MissionDetailsScreen', {
+          id: selectedMission.id,
+          title: selectedMission.title,
+          description: selectedMission.description,
+          imageUrl: selectedMission.imageUrl,
+          location: selectedMission.location,
+        });
+      } else {
+        console.error(`Mission not found at index ${currentMission}`);
+      }
+    });
+  };
+
+  const renderCard = (mission) => {
+    return <MissionCard mission={mission} />;
+  };
+
+  const handleYup = (card) => {
+    handleSwipeRight();
+  };
+
+  const handleNope = (card) => {
+    handleSwipeLeft();
   };
 
   if (missions.length === 0) {
@@ -87,58 +155,27 @@ const Missions = () => {
           opacity: 0.7,
         }}
       />
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 20 }}>
-          {missions[currentMission].title}
-        </Text>
-        <Image
-          source={missions[currentMission].imageUrl}
-          style={{
-            width: 300,
-            height: 300,
-            marginBottom: 20,
-            borderRadius: 12,
-          }}
-        />
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <TouchableOpacity
-            onPress={handleNoPress}
-            style={{ flex: 1, alignItems: 'center' }}
-          >
-            <Image
-              source={require('../assets/images/50.png')}
-              style={{ width: 130, height: 200 }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={handleYesPress}
-            style={{ flex: 1, alignItems: 'center' }}
-          >
-            <Image
-              source={require('../assets/images/51.png')}
-              style={{ width: 100, height: 200 }}
-            />
-          </TouchableOpacity>
-        </View>
-        <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10 }}>
-          {`Mission ${currentMission + 1} of ${missions.length}`}
-        </Text>
-      </View>
+      <SwipeCards
+        cards={missions}
+        renderCard={renderCard}
+        renderNoMoreCards={() => <Text>No more missions, Go to Homepage</Text>}
+        handleYup={handleYup}
+        handleNope={handleNope}
+        yupText="Accept"
+        nopeText="Reject"
+        showYup={false}
+        showNope={false}
+        cardStyle={{ justifyContent: 'center', alignItems: 'center' }}
+        stackOffsetY={-10}
+        stackOffsetX={0}
+      />
       {/* Footer */}
       <SafeAreaView
         style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
           flexDirection: 'row',
           justifyContent: 'space-around',
           alignItems: 'center',

@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   View,
   Text,
@@ -8,7 +9,6 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import { COLORS, icons, images, SIZES } from '../assets/theme';
 import { Stack, useRouter } from 'expo-router';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
@@ -29,23 +29,24 @@ const Home = () => {
     search: 'search',
     book: 'book',
   };
+
+  const overlayStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#EAE4E1', // set the background color for the overlay
+    opacity: 0.7, // set the opacity for the overlay
+  };
+
   return (
     <ImageBackground
-      source={require('../assets/images/background.png')} // background image
+      source={require('../assets/images/background.png')}
       style={{ flex: 1, width: '100%', height: '100%' }}
     >
       {/* Overlay background */}
-      <View
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: '#EAE4E1', // set the background color for the overlay
-          opacity: 0.7, // set the opacity for the overlay
-        }}
-      />
+      <View style={overlayStyle} />
 
       {/* Header */}
       <SafeAreaView
@@ -53,7 +54,7 @@ const Home = () => {
           flexDirection: 'row',
           justifyContent: 'space-around',
           alignItems: 'center',
-          height: height * 0.2, // set the height based on the screen height
+          height: height * 0.2,
         }}
       >
         <Stack.Screen
@@ -66,76 +67,78 @@ const Home = () => {
         <View>
           <Image
             source={require('../assets/images/2.png')}
-            style={{ width: width * 0.4, height: width * 0.4 }} // set the width and height based on the screen width
+            style={{ width: width * 0.4, height: width * 0.4 }}
           />
         </View>
         <View>
           <Image
             source={require('../assets/images/3.png')}
-            style={{ width: width * 0.4, height: width * 0.4 }} // set the width and height based on the screen width
+            style={{ width: width * 0.4, height: width * 0.4 }}
           />
         </View>
       </SafeAreaView>
 
       {/* Middle */}
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: -height * 0.25,
+        }}
+      >
         <TouchableOpacity
           onPress={handlePress}
           style={{
             width: width * 0.9,
             height: width * 0.8,
             borderRadius: width * 0.3,
-          }} // set the dimensions based on the screen width
+          }}
         >
           <Image
             source={require('../assets/images/1.png')}
-            style={{ width: '100%', height: '100%', borderRadius: width * 0.3 }} // set the dimensions based on the screen width
+            style={{ width: '100%', height: '100%', borderRadius: width * 0.3 }}
           />
         </TouchableOpacity>
       </View>
+
       {/* Another section */}
       <View
         style={{
-          height: height * 0.1,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1,
+          position: 'absolute',
+          bottom: height * 0.15,
+          width: '100%',
+          paddingHorizontal: width * 0.1,
         }}
       >
-        <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}>
-          <Image
-            source={require('../assets/images/5.png')}
-            style={{ width: width * 0.4, height: width * 0.4 }}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}>
-          <Image
-            source={require('../assets/images/6.png')}
-            style={{ width: width * 0.4, height: width * 0.4 }}
-          />
-        </TouchableOpacity>
-      </View>
-      <View
-        style={{
-          height: height * 0.12,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}>
-          <Image
-            source={require('../assets/images/8.png')}
-            style={{ width: width * 0.4, height: width * 0.4 }}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}>
-          <Image
-            source={require('../assets/images/7.png')}
-            style={{ width: width * 0.4, height: width * 0.4 }}
-          />
-        </TouchableOpacity>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <TouchableOpacity style={{ alignItems: 'center' }}>
+            <Image
+              source={require('../assets/images/QuestBtn.png')}
+              style={{ width: width * 0.39, height: width * 0.39 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={{ alignItems: 'center' }}>
+            <Image
+              source={require('../assets/images/SongBtn.png')}
+              style={{ width: width * 0.39, height: width * 0.39 }}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <TouchableOpacity style={{ alignItems: 'center' }}>
+            <Image
+              source={require('../assets/images/ActivBtn.png')}
+              style={{ width: width * 0.39, height: width * 0.39 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={{ alignItems: 'center' }}>
+            <Image
+              source={require('../assets/images/WhoBtn.png')}
+              style={{ width: width * 0.39, height: width * 0.39 }}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Footer */}
@@ -144,7 +147,7 @@ const Home = () => {
           flexDirection: 'row',
           justifyContent: 'space-around',
           alignItems: 'center',
-          paddingBottom: 20,
+          paddingBottom: height * 0.02,
         }}
       >
         <TouchableOpacity>

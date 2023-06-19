@@ -7,20 +7,15 @@ import {
   StyleSheet,
   TouchableOpacity,
   Linking,
-  Platform,
-  Modal,
-  Button,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import QRCode from 'react-native-qrcode-svg';
 
 const MissionDetailsScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const { title, description, imageUrl, location } = route.params;
+  const { id, title, description, imageUrl, location } = route.params;
   const mapIcon = <FontAwesome name="map-marker" size={30} color="blue" />;
-  const [showQRModal, setShowQRModal] = useState(false);
 
   const handleOpenMap = () => {
     const mapUrl = `geo:0,0?q=${location}`;
@@ -36,15 +31,23 @@ const MissionDetailsScreen = () => {
   };
 
   const handleAcceptMission = () => {
-    setShowQRModal(true);
-  };
-
-  const handleCloseQRModal = () => {
-    setShowQRModal(false);
-  };
-
-  const handlePressLink = () => {
-    Linking.openURL('https://familytreasure.app/');
+    if (id === 1) {
+      navigation.navigate('MissionIntroPage', {
+        imageUrl,
+      });
+    } else if (id === 2) {
+      navigation.navigate('MissionIntroPage2', {
+        imageUrl,
+      });
+    } else if (id === 3) {
+      navigation.navigate('MissionIntroPage3', {
+        imageUrl,
+      });
+    } else if (id === 4) {
+      navigation.navigate('MissionIntroPage4', {
+        imageUrl,
+      });
+    }
   };
 
   return (
@@ -77,7 +80,13 @@ const MissionDetailsScreen = () => {
           }}
         />
         <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Mission</Text>
-        <Text style={{ fontSize: 18, marginBottom: 20, width: 330 }}>
+        <Text
+          style={{
+            fontSize: 15,
+            marginBottom: 20,
+            width: 330,
+          }}
+        >
           {description}
         </Text>
         <TouchableOpacity onPress={handleOpenMap}>
@@ -102,27 +111,6 @@ const MissionDetailsScreen = () => {
         >
           <Text style={styles.buttonText}>Go Back</Text>
         </TouchableOpacity>
-        <Modal visible={showQRModal} animationType="slide">
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Scan this QR code</Text>
-            <QRCode
-              value="https://familytreasure.app/"
-              size={250}
-              color="#1A1A1A"
-              backgroundColor="#FFFFFF"
-            />
-            <Button title="Close" onPress={handleCloseQRModal} />
-            <Text style={styles.modalText}>
-              If Qr code does not work use this link{' '}
-              <Text
-                style={{ color: 'blue' }}
-                onPress={() => Linking.openURL('https://familytreasure.app/')}
-              >
-                https://familytreasure.app/
-              </Text>
-            </Text>
-          </View>
-        </Modal>
       </View>
     </ImageBackground>
   );
@@ -139,16 +127,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: 'black',
-  },
-  modalView: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  modalText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
   },
 });
 

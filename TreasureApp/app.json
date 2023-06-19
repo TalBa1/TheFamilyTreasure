@@ -5,6 +5,26 @@
       "bundler": "metro"
     },
     "name": "TreasureApp",
-    "slug": "TreasureApp"
+    "slug": "TreasureApp",
+    "platforms": ["android", "ios", "web"],
+    "android": {
+      "package": "com.yourcompany.TreasureApp",
+      "permissions": [
+        "CAMERA",
+        "CAMERA_ROLL",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "RECORD_AUDIO",
+        "MODIFY_AUDIO_SETTINGS",
+        "READ_PHONE_STATE",
+        "READ_CONTACTS",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE",
+        "MANAGE_DOCUMENTS",
+        "MEDIA_LIBRARY"
+      ]
+    }
   }
 }
