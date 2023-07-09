@@ -9,19 +9,13 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import { Stack, useRouter } from 'expo-router';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
-
-import Missions from './Missions';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const { width, height } = Dimensions.get('window');
 
 const Home = () => {
   const navigation = useNavigation();
-  const handlePress = () => {
-    navigation.navigate('Missions');
-  };
   const icons = {
     home: 'home',
     share: 'share',
@@ -30,14 +24,8 @@ const Home = () => {
     book: 'book',
   };
 
-  const overlayStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: '#EAE4E1', // set the background color for the overlay
-    opacity: 0.7, // set the opacity for the overlay
+  const handlePress = () => {
+    navigation.navigate('Missions');
   };
 
   return (
@@ -46,7 +34,17 @@ const Home = () => {
       style={{ flex: 1, width: '100%', height: '100%' }}
     >
       {/* Overlay background */}
-      <View style={overlayStyle} />
+      <View
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: '#EAE4E1',
+          opacity: 0.7,
+        }}
+      />
 
       {/* Header */}
       <SafeAreaView
@@ -57,13 +55,6 @@ const Home = () => {
           height: height * 0.2,
         }}
       >
-        <Stack.Screen
-          options={{
-            headerTransparent: true,
-            headerShadowVisible: false,
-            headerTitle: '',
-          }}
-        />
         <View>
           <Image
             source={require('../assets/images/2.png')}
@@ -112,13 +103,19 @@ const Home = () => {
         }}
       >
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <TouchableOpacity style={{ alignItems: 'center' }}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('QuestionsPage')}
+            style={{ alignItems: 'center' }}
+          >
             <Image
               source={require('../assets/images/QuestBtn.png')}
               style={{ width: width * 0.39, height: width * 0.39 }}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={{ alignItems: 'center' }}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('SongsPage')}
+            style={{ alignItems: 'center' }}
+          >
             <Image
               source={require('../assets/images/SongBtn.png')}
               style={{ width: width * 0.39, height: width * 0.39 }}
@@ -144,23 +141,27 @@ const Home = () => {
       {/* Footer */}
       <SafeAreaView
         style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
           flexDirection: 'row',
           justifyContent: 'space-around',
           alignItems: 'center',
-          paddingBottom: height * 0.02,
+          height: 70,
         }}
       >
         <TouchableOpacity>
-          <FontAwesome name={icons.home} size={24} color="#000" />
+          <FontAwesome name={icons.home} size={30} color="#000" />
         </TouchableOpacity>
         <TouchableOpacity>
-          <FontAwesome name={icons.book} size={24} color="#000" />
+          <FontAwesome name={icons.book} size={30} color="#000" />
         </TouchableOpacity>
         <TouchableOpacity>
-          <FontAwesome name={icons.share} size={24} color="#000" />
+          <FontAwesome name={icons.share} size={30} color="#000" />
         </TouchableOpacity>
         <TouchableOpacity>
-          <FontAwesome name={icons.hamburger} size={24} color="#000" />
+          <FontAwesome name={icons.hamburger} size={30} color="#000" />
         </TouchableOpacity>
       </SafeAreaView>
     </ImageBackground>
