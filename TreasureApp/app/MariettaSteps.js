@@ -9,7 +9,7 @@ import {
 import StepComponent from './StepComponent';
 
 const MariettaSteps = () => {
-  const steps = [1, 2, 3, 4, 5]; // Example steps
+  const steps = [1, 2, 3, 4, 5, 6, 7, 8]; // Example steps
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleNextStep = () => {

@@ -27,13 +27,13 @@ const MissionIntroPage = () => {
       <View style={styles.overlay} />
       <View style={styles.container}>
         <Image source={imageUrl} style={styles.image} />
-        <Text style={styles.title}>Your Mission Today</Text>
+        <Text style={styles.title}>Tehtäväsi tänään</Text>
         <Text style={styles.description}>
-          Your mission today is to learn the song Marietta Löhikäärme and sing
-          it with Zegy. Do you like to sing? It's going to be fun!
+          Tehtävänäsi tänään on oppia laulu "Marietta Löhikäärme" ja laulaa se
+          Zegyn kanssa. Tykkäätkö laulamisesta? Siitä tulee hauskaa!
         </Text>
         <TouchableOpacity style={styles.button} onPress={handleAccept}>
-          <Text style={styles.buttonText}>See steps!</Text>
+          <Text style={styles.buttonText}>Katso vaiheet!</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>

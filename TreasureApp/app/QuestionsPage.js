@@ -48,7 +48,7 @@ const Questions = () => {
       buttonText: 'Seuraava',
     },
     {
-      title: 'By you reading this, Zegy has achieved a big dream of his..,',
+      title: 'lukiessasi tätä, Zegy on saavuttanut suuren unelmansa...',
       description:
         'Miltä sinusta tuntuu, kun kuvittelet unelmiesi toteutumisen? Voitko kuvailla sitä tunnetta?',
       buttonText: 'Seuraava',
@@ -62,7 +62,7 @@ const Questions = () => {
     },
     {
       title:
-        'Happily giving to others is a very powerful way to enjoy and grow in life.',
+        'Ilolla antaminen muille on erittäin voimakas tapa nauttia ja kasvaa elämässä.',
       description:
         'Voitko ajatella erityistä lahjaa tai luomusta, jonka haluaisit antaa jollekulle, josta välität? Miltä se saattaisi saada hänet tuntemaan?',
       buttonText: 'Seuraava',
@@ -76,7 +76,7 @@ const Questions = () => {
     },
     {
       title:
-        'If you do not make your dreams a reality, maybe nobody else will..so..',
+        'Jos et tee unelmistasi totta, ehkä kukaan muukaan ei tee sitä... joten...',
       description:
         'Miksi mielestäsi on tärkeää tavoitella intohimojasi ja unelmiasi?',
       buttonText: 'Seuraava',

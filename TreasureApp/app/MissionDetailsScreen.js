@@ -18,12 +18,9 @@ const MissionDetailsScreen = () => {
   const mapIcon = <FontAwesome name="map-marker" size={30} color="blue" />;
 
   const handleOpenMap = () => {
-    const mapUrl = `geo:0,0?q=${location}`;
-    const fallbackUrl = `https://www.google.com/maps/place/${location}`;
-
-    Linking.canOpenURL(mapUrl).then((supported) => {
+    Linking.canOpenURL(location).then((supported) => {
       if (supported) {
-        Linking.openURL(mapUrl);
+        Linking.openURL(location);
       } else {
         Linking.openURL(fallbackUrl);
       }
@@ -86,30 +83,15 @@ const MissionDetailsScreen = () => {
             marginBottom: 20,
             width: 330,
           }}
-        >
-          {description}
-        </Text>
-        <TouchableOpacity onPress={handleOpenMap}>
-          <Text
-            style={{
-              fontSize: 18,
-              color: 'blue',
-              width: 270,
-              alignItems: 'center',
-            }}
-          >
-            Mission Location: {mapIcon}
-            {location}
-          </Text>
-        </TouchableOpacity>
+        ></Text>
         <TouchableOpacity style={styles.button} onPress={handleAcceptMission}>
-          <Text style={styles.buttonText}>Accept Mission</Text>
+          <Text style={styles.buttonText}>Hyväksy seikkailumatkan</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.buttonText}>Go Back</Text>
+          <Text style={styles.buttonText}>pala taakse </Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>

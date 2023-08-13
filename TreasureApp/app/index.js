@@ -123,7 +123,10 @@ const Home = () => {
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <TouchableOpacity style={{ alignItems: 'center' }}>
+          <TouchableOpacity
+            style={{ alignItems: 'center' }}
+            onPress={() => navigation.navigate('Videos')}
+          >
             <Image
               source={require('../assets/images/ActivBtn.png')}
               style={{ width: width * 0.39, height: width * 0.39 }}

@@ -26,22 +26,27 @@ const SongsPage = () => {
   const songs = [
     {
       id: 1,
-      title: 'Marietta lohikäärme - Xavito',
-      audioUrl: require('../assets/songs/SongMarietta.wav'),
+      title: 'Minä Olen Zegy',
+      audioUrl: require('../assets/songs/iamzegy.mp3'),
     },
     {
       id: 2,
-      title: 'Kaikki On Hyvin Tänään - Xavito',
-      audioUrl: require('../assets/songs/kaikkionhyvä.mp3'),
+      title: 'Marietta lohikäärme',
+      audioUrl: require('../assets/songs/SongMarietta.wav'),
     },
     {
       id: 3,
+      title: 'Kaikki On Hyvin Tänään',
+      audioUrl: require('../assets/songs/kaikkionhyvä.mp3'),
+    },
+    {
+      id: 4,
       title: 'Ystäväni',
       audioUrl: require('../assets/songs/ystavani.mp3'),
     },
     {
-      id: 4,
-      title: 'Paras Lahja - Bounce',
+      id: 5,
+      title: 'Paras Lahja',
       audioUrl: require('../assets/songs/paraslahja.mp3'),
     },
   ];
@@ -95,7 +100,7 @@ const SongsPage = () => {
         }}
       />
       <View style={styles.container}>
-        <Text style={styles.heading}>List of Songs</Text>
+        <Text style={styles.heading}>Kuuntele Zegin laulut</Text>
         <FlatList
           data={songs}
           renderItem={renderItem}

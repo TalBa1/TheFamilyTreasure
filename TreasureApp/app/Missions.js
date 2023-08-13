@@ -15,26 +15,26 @@ import SwipeCards from 'react-native-swipe-cards';
 const missions = [
   {
     id: 1,
-    title: 'Musical Mission',
-    imageUrl: require('../assets/images/Marietta.png'),
+    title: 'Metsä seikkailu',
+    imageUrl: require('../assets/images/zaza.png'),
     description:
-      'Participants will listen to a short clip of a song and then have to complete the lyrics. This is a fun and interactive way to test your music knowledge and memory skills. It is a great opportunity to have some friendly competition with your friends and family!',
-    location: 'Home',
+      'Osallistujat kuuntelevat lyhyen pätkän laulua ja heidän tehtävänään on täydentää puuttuvat sanat. Tämä on hauska ja vuorovaikutteinen tapa testata musiikkitietämystä ja muistitaitoja. Se on loistava tilaisuus pitää ystävien ja perheen kesken ystävällistä kilpailua!',
+    location: 'Koti',
   },
   {
     id: 2,
-    title: 'Swimming Mission',
+    title: 'Uintitehtävä',
     imageUrl: require('../assets/images/53.png'),
     description:
-      'The mission is to find all the hidden objects at the bottom of the pool, such as toys, coins, and sea creatures. Each object has a point value, and the goal is to collect as many points as possible.',
+      'Tehtävänä on löytää kaikki altaan pohjalta piilotetut esineet, kuten lelut, kolikot ja merenelävät. Jokaisella esineellä on pistearvo, ja tavoitteena on kerätä mahdollisimman monta pistettä.',
     location: 'Hervanta, Torisevanraitti 7, 33720 Tampere',
   },
   {
     id: 3,
-    title: 'Outside Mission',
+    title: 'Ulkoilutehtävä',
     imageUrl: require('../assets/images/54.png'),
     description:
-      'Organize a treasure hunt where participants have to follow clues and solve puzzles to find a hidden treasure.',
+      'Järjestä aarteenetsintä, jossa osallistujien tulee seurata vihjeitä ja ratkaista pulmia löytääkseen kätketyn aarteen.',
     location: 'Platform6, Åkerlundinkatu, Tampere',
   },
 ];
@@ -61,7 +61,7 @@ const MissionCard = ({ mission }) => {
           fontWeight: 'bold',
         }}
       >
-        Description
+        Seikkailumatkan kuvaus
       </Text>
       <Text
         style={{
